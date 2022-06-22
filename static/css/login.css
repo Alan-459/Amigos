@@ -1,0 +1,128 @@
+* {
+    margin: 0;
+}
+a{
+    text-decoration: none;
+    color:white;
+}
+span{
+    color:rgb(233, 135, 135);
+}
+p{
+    font-size: large;
+    font-weight: 500;
+}
+.logo_bloc {
+    height: fit-content;
+    position: absolute;
+
+    left: 400px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 0px;
+    align-items: center;
+    width: fit-content;
+    color: rgb(233, 135, 135);
+    font-family: 'Fascinate Inline',
+        cursive;
+}
+
+.logo_bloc img {
+    width: fit-content;
+}
+
+h3 {
+    width: fit-content;
+    font-size: 32px;
+}
+
+.navbar {
+    width: 100%;
+    height: 70px;
+    background-color: #4b525b;
+    align-items: center;
+}
+
+.navbar button {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: #3498db;
+    color: white;
+    font-size: medium;
+    border-radius: 5px;
+    border-color: rgb(233, 135, 135);
+    height: 40px;
+    width: 90px;
+}
+
+.navbar button:hover {
+    background-color: rgb(233, 135, 135);
+    color: #3498db;
+    border: 2px solid white;
+    font-size: 18px;
+    font-weight: bolder;
+    cursor: pointer;
+}
+
+.main_div {
+    width: 60%;
+    height: 100vh;
+    background: url("/static/Images/mainhome.png");
+    background-size: cover;
+    
+}
+
+h1 {
+    color: rgb(233, 135, 135);
+    font-family: 'Fascinate Inline', cursive;
+}
+
+.signinParentDiv {
+
+    border: 3px solid rgb(233, 135, 135);
+    width: max-content;
+    padding: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(95%, -39%);
+    border-radius: 6px;
+
+}
+
+.signinParentDiv:hover {
+    border: 3px solid #3498db;
+}
+
+.signinParentDiv .input {
+    border-top-color: transparent;
+    border-left-color: transparent;
+    border-right-color: transparent;
+    outline-color: transparent;
+}
+
+.signinParentDiv button {
+    background: #3498db;
+    color: white;
+    font-size: medium;
+    border-radius: 5px;
+    border-color: rgb(233, 135, 135);
+    height: 46px;
+    width: 170px;
+}
+
+.signinParentDiv button:hover {
+    background-color: rgb(233, 135, 135);
+    color: #3498db;
+    border: 2px solid white;
+    font-size: 24px;
+    font-weight: bolder;
+    cursor: pointer;
+}
+
+.signinParentDiv a {
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+}

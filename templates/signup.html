@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static',filename='/css/signup.css') }}">
+    <title>Sign Up</title>
+</head>
+
+    <!-- navbar -->
+    <nav >
+    <div class="navbar">
+        <div class="logo_bloc">
+            <img width="80px" height="80px" src="{{ url_for('static',filename='/Images/logo.png') }}" alt="">
+            <h3><a href="/home">Amigos</a></h3>
+        </div>
+       <button><a href="/signin">signin</a></button>
+    </div>
+
+    </nav>
+    <div class="main_div" id="signup"></div>
+    <div class="signupParentDiv">
+        <h1 style="text-align:center" >Sign Up</h1>
+        <p style="margin-top:45px">Welcome to Amgio Diary! <br>
+        Let’s create your free account</p>
+        <img width="200px" height="100px" src="{{ url_for('static',filename='/Images/logo.png') }}"></img>
+        <form action="">
+            <label For="user" >Username</label>
+            <br />
+            <input class="input" type="text" id="user"  />
+            <br />
+            <label For="fname">Email</label>
+            <br />
+            <input class="input" type="email" />
+            <br />
+            <label For="ph">Phone</label>
+            <br />
+            <input class="input" type="number" id="ph" />
+            <br />
+            <label For="lname">Password</label>
+            <br />
+            <input className="input" type="password" id="lname"  />
+            <br />
+            <br />
+            <button >Signup</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>
