@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static',filename='/css/styles.css') }}">
+    <title>Interactive diary</title>
+</head>
+
+<body>
+    
+    <div class="container">
+        <div class="topbar">
+            <div class="logo">
+                <h2>Amigo</h2>
+            </div>
+            
+            <i class="fas fa-bell"></i>
+            <div class="user">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUW0u5Eiiy3oM6wcpeEE6sXCzlh8G-tX1_Iw&usqp=CAU" alt="">
+            </div>
+        </div>
+        <div class="sidebar">
+            <ul>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-th-large"></i>
+                        <div>Home</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-user-graduate"></i>
+                        <div>Previos journals</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                        <div>New journal</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-users"></i>
+                        <div>Friends list</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-chart-bar"></i>
+                        <div>Analysis</div>
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="#">
+                        <i class="fas fa-cog"></i>
+                        <div>Settings</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-question"></i>
+                        <div>Help</div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="main">
+            <div class="cards">
+                
+            </div>
+            <div class="charts">
+                <div class="chart">
+                    <h2>Analysis (past 7 days)</h2>
+                    <canvas id="lineChart"></canvas>
+                </div>
+                <!-- <div class="chart doughnut-chart">
+                    <h2>Employees</h2>
+                    <canvas id="doughnut"></canvas>
+                </div> -->
+            </div>
+        </div>
+    </div>
+    
+      
+      </div>
+      <!-- container -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
+    <script src="{{ url_for('static',filename='/script/chart1.js') }}"></script>
+    
+</body>
+
+</html>
