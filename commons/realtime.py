@@ -125,6 +125,8 @@ def analysis(db_path, model_name = 'VGG-Face', detector_backend = 'opencv', dist
 	cap = cv2.VideoCapture(source) #webcam
 	step = 0
 	end = time.time() + 15
+	emo_dict = {}
+	total = 0 #total
 	while(end>time.time()):
 		step += 1
 		ret, img = cap.read()
@@ -231,9 +233,9 @@ def analysis(db_path, model_name = 'VGG-Face', detector_backend = 'opencv', dist
 								emo_dict[emotion] = emo_dict[emotion] + score
 							else:
 								emo_dict[emotion] =  score
-							print(emo_dict)
+							# print(emo_dict)
 								#background of mood box
-
+							total = total + score
 							#transparency
 							overlay = freeze_img.copy()
 							opacity = 0.4
@@ -474,8 +476,9 @@ def analysis(db_path, model_name = 'VGG-Face', detector_backend = 'opencv', dist
 			break
 
 	#kill open cv things
-	emo_dict =  {k:v/step for k,v in emo_dict.items}
-	# print(emo_dict)
+	# print(f' \t final score: {emo_dict}')
+	emo_dict =  {k:v/total for k,v in emo_dict.items()}
+	print(emo_dict)
 	cap.release()
 	cv2.destroyAllWindows()
 
