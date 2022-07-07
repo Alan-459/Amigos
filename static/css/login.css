@@ -1,128 +1,126 @@
 * {
     margin: 0;
+    box-sizing: border-box;
 }
-a{
+
+a:link {
     text-decoration: none;
-    color:white;
-}
-span{
-    color:rgb(233, 135, 135);
-}
-p{
-    font-size: large;
-    font-weight: 500;
-}
-.logo_bloc {
-    height: fit-content;
-    position: absolute;
-
-    left: 400px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    column-gap: 0px;
-    align-items: center;
-    width: fit-content;
-    color: rgb(233, 135, 135);
-    font-family: 'Fascinate Inline',
-        cursive;
 }
 
-.logo_bloc img {
-    width: fit-content;
+:root {
+    --left-outer: aquamarine;
+    --left-inner: rgb(110, 247, 201);
+    --right-outer: whitesmoke;
+    --right-inner: white;
 }
 
-h3 {
-    width: fit-content;
-    font-size: 32px;
-}
-
-.navbar {
-    width: 100%;
-    height: 70px;
-    background-color: #4b525b;
-    align-items: center;
-}
-
-.navbar button {
-    position: absolute;
-    top: 15px;
-    right: 20px;
-    background: #3498db;
-    color: white;
-    font-size: medium;
-    border-radius: 5px;
-    border-color: rgb(233, 135, 135);
-    height: 40px;
-    width: 90px;
-}
-
-.navbar button:hover {
-    background-color: rgb(233, 135, 135);
-    color: #3498db;
-    border: 2px solid white;
-    font-size: 18px;
-    font-weight: bolder;
-    cursor: pointer;
-}
-
-.main_div {
-    width: 60%;
+.maindiv {
+    display: flex;
     height: 100vh;
-    background: url("/static/Images/mainhome.png");
-    background-size: cover;
-    
+    width: fit-content;
+
 }
 
-h1 {
-    color: rgb(233, 135, 135);
+.maindiv .left {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background-color: var(--left-outer);
+    height: 100vh;
+    width: 40vw;
+}
+
+.left .left_in {
+    background-color: var(--left-inner);
+    height: 80vh;
+    width: 24vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.left_in h1 {
+    font-size: 2.8vw;
+}
+
+.left_in img {
+    width: 30%;
+}
+
+.maindiv .right {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: var(--right-outer);
+    height: 100vh;
+    width: 60vw;
+}
+
+.right .right_in {
+    background-color: var(--right-inner);
+    height: 80vh;
+    width: 40vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* font-family: 'Sanchez', serif; */
     font-family: 'Fascinate Inline', cursive;
 }
 
-.signinParentDiv {
+.input {
+    width: 15vw;
+    height: 4vh;
+    border: 0.1rem solid gainsboro;
+    border-radius: 0.5rem;
+    outline: none;
+}
 
-    border: 3px solid rgb(233, 135, 135);
-    width: max-content;
-    padding: 10px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(95%, -39%);
-    border-radius: 6px;
+.right_in h1 {
+    text-align: center;
+    margin-bottom: 15%;
+    font-family: 'Fascinate Inline', cursive;
+    font-size: 2.8vw;
 
 }
 
-.signinParentDiv:hover {
-    border: 3px solid #3498db;
+label {
+    font-size: 1.1vw;
+
 }
 
-.signinParentDiv .input {
-    border-top-color: transparent;
-    border-left-color: transparent;
-    border-right-color: transparent;
-    outline-color: transparent;
+#Pname {
+    width: 15vw;
+    height: 4vh;
+    border: 0.1rem solid gainsboro;
+    border-radius: 0.5rem;
+    outline: none;
 }
 
-.signinParentDiv button {
-    background: #3498db;
-    color: white;
-    font-size: medium;
-    border-radius: 5px;
-    border-color: rgb(233, 135, 135);
-    height: 46px;
-    width: 170px;
+form {
+    display: grid;
 }
 
-.signinParentDiv button:hover {
-    background-color: rgb(233, 135, 135);
-    color: #3498db;
-    border: 2px solid white;
-    font-size: 24px;
-    font-weight: bolder;
+.right_in p {
+    text-align: center;
+}
+
+button {
+    padding: 0.6em;
+    border: none;
+    border-radius: 3vh;
+    background-color: var(--left-inner);
+    font-size: 1.4vw;
+}
+
+button:hover {
+    background-color: var(--right-inner);
+    color: var(--left-inner);
     cursor: pointer;
 }
 
-.signinParentDiv a {
-    display: flex;
-    justify-content: center;
-    cursor: pointer;
+p {
+    font-size: 1.2vw;
 }

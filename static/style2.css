@@ -1,0 +1,53 @@
+body{
+    background: linear-gradient(to right,  rgb(235, 235, 178),rgb(174, 225, 174));
+}
+.mainblock{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-top: 10%;
+}
+h1{
+    font-family: 'Rubik Moonrocks', cursive;
+    color: rgb(117, 179, 157);
+        font-size: 3rem;
+    
+}
+
+button {
+    background: #3498db;
+    color: white;
+    font-size: large;
+    border-radius: 10%;
+    border-color: rgb(233, 135, 135);
+    height: 2.4rem;
+    width: 7rem;
+    margin-top: 1em;
+    margin-left: 5%;
+}
+
+button:hover {
+    background-color: rgb(233, 135, 135);
+    color: #3498db;
+    border: 5% solid white;
+    font-size: 1.3rem;
+    font-weight: 2rem;
+    cursor: pointer;
+}
+form{
+    width:50%;
+    display: grid;
+    justify-content: center;
+}
+form label{
+    grid-column:span 2;
+    font-size: 2em;
+}
+form .slider{
+    grid-column: span 2;
+}
+form button{
+    margin-left: 4em;
+}

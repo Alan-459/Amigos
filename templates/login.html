@@ -1,44 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="loginstyle.css">
+    <link href="https://fonts.googleapis.com/css2?family=Sanchez:ital@1&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static',filename='css/login.css') }}">
-
-    <title>Sign in</title>
+    <title>Login</title>
 </head>
+
 <body>
-    <!-- navbar -->
-    <nav>
-        <div class="navbar">
-            <div class="logo_bloc">
-                <img width="80px" height="80px" src="{{ url_for('static',filename='Images/logo.png') }}" alt="">
-                <h3><a href="/home"><span>Amigos</span></a></h3>
+    <div class="maindiv">
+        <div class="left">
+            <div class="left_in">
+                <img src="{{ url_for('static',filename='Images/logo.png') }}" alt="">
+                <h1>Amigo</h1>
+                <br>
+                <p>Interactive Diary <br> with Emotion Analysis and Detection</p>
             </div>
-            <button ><a href="/signup">Sign Up</a></button>
         </div>
-    
-    </nav>
-    <div class="main_div"></div>
-    <div class="signinParentDiv">
-        <h1 style="text-align:center">Sign In</h1>
-        <p style="margin-top:45px">Welcome to Amgio Diary! <br>
-            Sign In to your account</p>
-        <img width="200px" height="100px" src="{{ url_for('static',filename='Images/logo.png') }}"></img>
-        <form action="">
-            <label For="user">Username</label>
-            <br />
-            <input class="input" type="text" id="user" />
-            <br />
-            <label For="lname">Password</label>
-            <br />
-            <input className="input" type="password" id="lname" />
-            <br />
-            <br />
-            <button>Sign In</button>
-        </form>
-    </div>
+        <div class="right">
+            <div class="right_in">
+                <h1>Login</h1>
+                <form action="/signin" method="POST">
+                    <label For="user">Email Id</label>
+                    <input class="input" type="email" id="user" name="email" />
+                    <br>
+                    <label For="lname">Password</label>
+
+                    <input class="input" type="password" id="lname" name="pass" placeholder="Enter your password" />
+                    <br />
+                    
+                    <button>Sign In</button>
+                    <br>
+                </form>
+                <p><a href="/signup">or,signup</a> </p>
+            </div>
+        </div>
     </div>
 </body>
+
 </html>
