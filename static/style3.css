@@ -31,10 +31,10 @@ h3{
     font-size:3rem;
 }
 
-form{
+/* form{
     display: grid;
     grid-template-rows: 1fr 1fr 1fr 1fr;
-}
+} */
 button {
     background: #3498db;
     color: white;
