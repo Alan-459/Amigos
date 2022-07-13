@@ -7,9 +7,13 @@
   <body>
     <div class="mainblock">
     <h1>Tell how was your day ?</h1>
+    <img src="{{ url_for('video') }}" width="20%" ><br>
+    <a href="{{url_for('re')}}">Start</a>
+    <a href="{{url_for('sn')}}">Stop</a><br>
     <form action="/text" method="POST">
-        <input type="text" name="text" style="height:100px;width:400px;"><br>
-
+	
+        <input type="text" name="text" style="height:100px;width:400px;" value="{{t}}"><br>
+        <br>
         <label>Add image</label><br>
         <input type="file" name="file" id="file" accept="image/*" onchange="previewImage();">
         <img id="preview">
@@ -32,7 +36,7 @@
             }
         }
     </script>
-    
+   
 
   </body>
 </html>
