@@ -66,12 +66,6 @@ def analysis(db_path, model_name = 'VGG-Face', detector_backend = 'opencv', dist
 		emotion_model = DeepFace.build_model('Emotion')
 		print("Emotion model loaded")
 
-		# age_model = DeepFace.build_model('Age')
-		# print("Age model loaded")
-
-		# gender_model = DeepFace.build_model('Gender')
-		# print("Gender model loaded")
-
 		toc = time.time()
 
 		print("Facial attibute analysis models loaded in ",toc-tic," seconds")
@@ -124,10 +118,9 @@ def analysis(db_path, model_name = 'VGG-Face', detector_backend = 'opencv', dist
 
 	cap = cv2.VideoCapture(source) #webcam
 	step = 0
-	end = time.time() + 15
 	emo_dict = {}
 	total = 0 #total
-	while(end>time.time()):
+	while(1):
 		step += 1
 		ret, img = cap.read()
 
@@ -476,11 +469,9 @@ def analysis(db_path, model_name = 'VGG-Face', detector_backend = 'opencv', dist
 			break
 
 	#kill open cv things
-	# print(f' \t final score: {emo_dict}')
+	# print(f' \tq final score: {emo_dict}')
 	emo_dict =  {k:v/total for k,v in emo_dict.items()}
 	print(emo_dict)
+	return (emo_dict)
 	cap.release()
 	cv2.destroyAllWindows()
-
-def new_func():
-    return 0

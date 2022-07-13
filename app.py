@@ -1,4 +1,5 @@
-from flask import *
+from flask import request
+from flask import Flask,render_template,redirect,url_for
 import pyrebase
 config = {
     "apiKey": "AIzaSyAEHIF53_-kWZ-z6gPw2l1CWoWDdrhsvc0",
