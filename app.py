@@ -1,6 +1,9 @@
-from flask import request
-from flask import Flask,render_template,redirect,url_for
+from flask import *
 import pyrebase
+import speech_recognition
+import cv2
+recognizer=speech_recognition.Recognizer()
+
 config = {
     "apiKey": "AIzaSyAEHIF53_-kWZ-z6gPw2l1CWoWDdrhsvc0",
     "authDomain": "diary-aab7f.firebaseapp.com",
@@ -46,6 +49,25 @@ def signin():
         # flash('You were successfully logged in')
         return redirect(url_for('basic'))
     return render_template('login.html')
+
+camera=cv2.VideoCapture(0)
+def generate_frames():
+    while True:
+            
+        ## read the camera frame
+        success,frame=camera.read()
+        if not success:
+            break
+        else:
+            ret,buffer=cv2.imencode('.jpg',frame)
+            frame=buffer.tobytes()
+
+        yield(b'--frame\r\n'
+                   b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
+
+@app.route('/video')
+def video():
+    return Response(generate_frames(),mimetype='multipart/x-mixed-replace; boundary=frame')
 
 
 @app.route('/tile', methods=['GET', 'POST'])
@@ -99,6 +121,31 @@ def textf():
             db.child(date['date']).update(date)
         return redirect(url_for('basic'))
     return render_template('new3.html')
+
+ar=['']
+@app.route('/re',methods=['GET','POST'])
+def re():
+    while True:
+        with speech_recognition.Microphone() as mic:
+            recognizer.adjust_for_ambient_noise(mic, duration=0.1)
+            audio=recognizer.listen(mic)
+            try:
+                text=recognizer.recognize_google(audio)
+                #text=text.lower()
+                ar.append(text)
+                print(text)
+                print(ar)
+
+            except:
+                print("Internet issue")   
+
+
+@app.route('/sn',methods=['GET','POST'])
+def sn():
+    str=''
+    for i in ar:
+        str=str+' '+i
+    return render_template('new3.html',t=str)
 
 
 if __name__ == '__main__':
