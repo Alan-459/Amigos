@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <link rel="stylesheet" href="{{ url_for('static',filename='/style2.css') }}">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Arima:wght@100&family=Fascinate+Inline&family=Fuzzy+Bubbles&family=Monoton&family=Rubik+Moonrocks&display=swap"
+    rel="stylesheet">
+  <body>
+    <div class="mainblock">
+    <h1>What made your day {{t}} ?</h1>
+    <form action="/exp" method="POST">
+        <select id="exp" name="exp" size="4" multiple>
+          <option value="Work">Work</option>
+          <option value="Family">Family</option>
+          <option value="Relationship">Relationship</option>
+          <option value="Education">Education</option>
+          <option value="Food">Food</option>
+          <option value="Traveling">Traveling</option>
+          <option value="Friends">Friends</option>
+          <option value="Games">Games</option>
+          <option value="More">More</option>
+        </select>
+        
+        <!-- <input type="checkbox" name="fordCheckBox" id="Ford" value="Ford">
+        <label for="Ford"></label> -->
+        
+        <button type="submit" name="submit" value="exp">Next</button>
+    </form>
+    </div>
+    <br>
+    <img src="{{ url_for('video') }}" width="20%">
+
+
+
+  </body>
+</html>

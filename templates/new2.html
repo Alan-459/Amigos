@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <link rel="stylesheet" href="{{ url_for('static',filename='/style2.css') }}">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Arima:wght@100&family=Fascinate+Inline&family=Fuzzy+Bubbles&family=Monoton&family=Rubik+Moonrocks&display=swap"
+    rel="stylesheet">
+  <body>
+    <div class="mainblock">
+    <h1>How was your day today ?</h1>
+    {{r}}
+    <form action="/rate" method="POST">
+        <label>Rate between 0 - 10 </label>
+        <select id="rate" name="rate" size="4" multiple>
+          <option value="Boring">Boring</option>
+          <option value="Awesome">Awesome</option>
+          <option value="Normal">Normal</option>
+          <option value="Bad">Bad</option>
+        </select>
+        <button type="submit" name="submit" value="rate">Next</button>
+    </form>
+    </div>
+    <br>
+    <img src="{{ url_for('video') }}" width="20%">
+
+
+
+  </body>
+</html>
