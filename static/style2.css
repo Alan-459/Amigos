@@ -16,6 +16,29 @@ h1{
     
 }
 
+input[type=checkbox] {
+    display: none;
+ }
+ 
+ input#Ford[type=checkbox] + label {
+     display:inline-block;
+     padding: 0 0 0 0px;
+     background:url("https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg?cs=srgb&dl=pexels-anjana-c-674010.jpg&fm=jpg") no-repeat;
+     height: 125px;
+     width: 125px;;
+     background-size: 100%;
+ }
+ 
+ input#Ford[type=checkbox]:checked + label {
+     display:inline-block;
+     padding: 0 0 0 0px;
+     background:url("https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg?cs=srgb&dl=pexels-anjana-c-674010.jpg&fm=jpg") no-repeat;
+     height: 125px;
+     width: 125px;;
+     background-size: 100%;
+     border: 5px solid #555;
+ }
+
 button {
     background: #3498db;
     color: white;
