@@ -1,7 +1,11 @@
 from flask import *
 import pyrebase
 import speech_recognition
-import cv2
+from deepface import DeepFace as df
+import io
+
+import matplotlib.pyplot as plt
+import cv2 as cv
 recognizer=speech_recognition.Recognizer()
 
 config = {
@@ -20,7 +24,7 @@ storage = firebase.storage()
 auth = firebase.auth()
 
 app = Flask(__name__)
-
+camera=cv.VideoCapture(0)
 
 @app.route('/')
 def mainpage():
@@ -50,7 +54,35 @@ def signin():
         return redirect(url_for('basic'))
     return render_template('login.html')
 
-camera=cv2.VideoCapture(0)
+
+@app.route('/tile', methods=['GET', 'POST'])
+def basic():
+    todo = db.get()
+    to = todo.val()
+    res = dict(reversed(list(to.items())))
+    if request.method == 'POST':
+        var = request.form['show']
+        if var:
+            return render_template('show.html', t=to[var])
+
+    if to:
+        return render_template('index.html', t=res.values())
+    return render_template('index.html')
+
+
+date = {'date': '', 'text': '', 'rate': '', 'link': '', 'exp':'', 'face':''}
+
+
+@app.route('/date', methods=['GET', 'POST'])
+def datef():
+    
+    if request.method == 'POST':
+        date1 = request.form['date']
+        date['date'] = date1
+        db.child(date['date']).update(date)
+        return render_template('new2.html')
+    return render_template('new1.html')
+
 def generate_frames():
     while True:
             
@@ -59,7 +91,7 @@ def generate_frames():
         if not success:
             break
         else:
-            ret,buffer=cv2.imencode('.jpg',frame)
+            ret,buffer=cv.imencode('.jpg',frame)
             frame=buffer.tobytes()
 
         yield(b'--frame\r\n'
@@ -69,60 +101,58 @@ def generate_frames():
 def video():
     return Response(generate_frames(),mimetype='multipart/x-mixed-replace; boundary=frame')
 
-
-@app.route('/tile', methods=['GET', 'POST'])
-def basic():
-    todo = db.get()
-    to = todo.val()
-    if request.method == 'POST':
-        var = request.form['show']
-        if var:
-            return render_template('show.html', t=to[var])
-
-    if to:
-        return render_template('index.html', t=to.values())
-    return render_template('index.html')
-
-
-date = {'date': '', 'text': '', 'rate': '', 'link': ''}
-
-
-@app.route('/date', methods=['GET', 'POST'])
-def datef():
-
-    if request.method == 'POST':
-        date1 = request.form['date']
-        date['date'] = date1
-        db.child(date['date']).update(date)
-        return render_template('new2.html')
-    return render_template('new1.html')
-
-
 @app.route('/rate', methods=['GET', 'POST'])
 def ratef():
     if request.method == 'POST':
-        rate = int(request.form['rate'])
+        rate = request.form['rate']
         date['rate'] = rate
         db.child(date['date']).update(date)
-        return render_template('new3.html')
+        return render_template('new3.html',t=rate)
     return render_template('new2.html')
+ar=['']
+@app.route('/exp', methods=['GET', 'POST'])
+def expf():
+    if request.method == 'POST':
+        exp = request.form['exp']
+        date['exp'] = exp
+        db.child(date['date']).update(date)
+        return render_template('new4.html')
+    ar=['']    
+    return render_template('new3.html')
+
 
 
 @app.route('/text', methods=['GET', 'POST'])
 def textf():
     if request.method == 'POST':
+
+        # face recognition phase
+        cam=cv.VideoCapture(0)
+        ret,frame=cam.read()
+        # cv.imshow('abc',frame)
+        # cv.waitKey(0)
+        obj = df.analyze(img_path = frame, actions = ['emotion'])
+        dmo=obj['dominant_emotion']
+        # print(dmo)
+        val=obj['emotion'][dmo]
+        date['face']=dmo
+        db.child(date['date']).update(date)
+        #face data uploaded
+
         text = request.form['text']
         date['text'] = text
         db.child(date['date']).update(date)
-        img = request.form['file']
-        if img:
-            storage.child(date['date']).put(img)
+        camera.release()
+        pic = request.form['file']
+        print(pic)
+        if pic:
+            # img=Img(img=pic.read(),mimetype=pic.mimetype,name='name')
+            storage.child(date['date']).put(pic)
             date['link'] = storage.child(date['date']).get_url(date['date'])
             db.child(date['date']).update(date)
         return redirect(url_for('basic'))
     return render_template('new3.html')
 
-ar=['']
 @app.route('/re',methods=['GET','POST'])
 def re():
     while True:
@@ -133,8 +163,8 @@ def re():
                 text=recognizer.recognize_google(audio)
                 #text=text.lower()
                 ar.append(text)
-                print(text)
-                print(ar)
+                # print(text)
+                # print(ar)
 
             except:
                 print("Internet issue")   
@@ -147,6 +177,35 @@ def sn():
         str=str+' '+i
     return render_template('new3.html',t=str)
 
+
+fig,ax=plt.subplots(figsize=(7,7))
+# date_dict = {'12-05-2021':'Sad','13-05-2021':'Neutral','14-05-2021':'Sad','15-05-2021':'Surprise','18-05-2021':'Neutral','19-05-2021':'Angry','20-05-2021':'Sad','21-06-2021':'Happy','22-05-2021':'Happy'}
+# x = date_dict.keys()
+# y = date_dict.values()
+@app.route('/graph',methods=['GET','POST'])
+def graph():
+    return render_template('graph.html')
+
+
+@app.route('/visualize')
+def egraph():
+    x=[]
+    y=[]
+    todo = db.get()
+    to = todo.val()
+    ar=to.values()
+    for i in ar:
+        x.append(i['date'])
+        y.append(i['face'])
+    plt.plot(x,y)
+    plt.xlabel('Dates')
+    plt.xticks(rotation=45)
+    plt.ylabel('Emotion')
+    img=io.BytesIO()
+    fig.savefig(img)
+    img.seek(0)
+    return send_file(img,mimetype='img/png')
+    
 
 if __name__ == '__main__':
     app.run(debug=True)
