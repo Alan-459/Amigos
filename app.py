@@ -3,7 +3,6 @@ import pyrebase
 import speech_recognition
 from deepface import DeepFace as df
 import io
-
 import matplotlib.pyplot as plt
 import cv2 as cv
 recognizer=speech_recognition.Recognizer()
@@ -24,7 +23,7 @@ storage = firebase.storage()
 auth = firebase.auth()
 
 app = Flask(__name__)
-camera=cv.VideoCapture(0)
+
 
 @app.route('/')
 def mainpage():
@@ -53,7 +52,7 @@ def signin():
         # flash('You were successfully logged in')
         return redirect(url_for('basic'))
     return render_template('login.html')
-
+    
 
 @app.route('/tile', methods=['GET', 'POST'])
 def basic():
@@ -71,7 +70,7 @@ def basic():
 
 
 date = {'date': '', 'text': '', 'rate': '', 'link': '', 'exp':'', 'face':''}
-
+camera=cv.VideoCapture(0)
 
 @app.route('/date', methods=['GET', 'POST'])
 def datef():
@@ -84,8 +83,9 @@ def datef():
     return render_template('new1.html')
 
 def generate_frames():
+
     while True:
-            
+        
         ## read the camera frame
         success,frame=camera.read()
         if not success:
@@ -103,6 +103,7 @@ def video():
 
 @app.route('/rate', methods=['GET', 'POST'])
 def ratef():
+    
     if request.method == 'POST':
         rate = request.form['rate']
         date['rate'] = rate
@@ -144,8 +145,9 @@ def textf():
         db.child(date['date']).update(date)
         camera.release()
         pic = request.form['file']
-        print(pic)
-        if pic:
+        img=pic
+
+        if img:
             # img=Img(img=pic.read(),mimetype=pic.mimetype,name='name')
             storage.child(date['date']).put(pic)
             date['link'] = storage.child(date['date']).get_url(date['date'])
@@ -172,10 +174,11 @@ def re():
 
 @app.route('/sn',methods=['GET','POST'])
 def sn():
+
     str=''
     for i in ar:
         str=str+' '+i
-    return render_template('new3.html',t=str)
+    return render_template('new4.html',t=str)
 
 
 fig,ax=plt.subplots(figsize=(7,7))
