@@ -49,6 +49,9 @@ button {
     margin-left:4em;
 }
 
+.icon{
+    background: url(../images/next-button.png);
+}
 button:hover {
     background-color: rgb(233, 135, 135);
     color: #3498db;

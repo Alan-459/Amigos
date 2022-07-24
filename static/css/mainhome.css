@@ -3,7 +3,7 @@
     margin:0 auto;
 }
 .navbar{
-    position:fixed;
+    position:relative;
     top:0;
     display:flex;
     flex-direction: row;
@@ -44,12 +44,20 @@
     font-size: 1.3vw;
 }
 .nav-right button{
-    background:#3498db;
+    background:rgba(34, 63, 227, 0.977);
     padding:.5vw;
-    color:white;
-    font-size: 1.3vw;
-    border-radius:5px;
-    border-color: rgb(233, 135, 135);
+    color:black;
+    font-size : 1.3vw;
+    border-radius:12px;
+    border-color: rgb(233, 135, 135,0);
+}
+.nav-right a {
+    font-weight:bold;
+}
+.nav-right button a{
+    color:rgb(230, 163, 163);
+    /* font-weight: bold; */
+    font-family: Verdana, Tahoma, sans-serif;   
 }
 a:link{
     text-decoration: none;
@@ -88,8 +96,9 @@ a:link{
     color:rgb(233, 135, 135);
 }
 .heading p{
-    font-weight:1.9vh;
+    font-weight:bold;
     font-size:1.5vw;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 /* description or features */
 .description{

@@ -799,9 +799,9 @@ def stream(db_path = '', model_name ='VGG-Face', detector_backend = 'opencv', di
 	if frame_threshold < 1:
 		raise ValueError("frame_threshold must be greater than the value 1 but you passed "+str(frame_threshold))
 
-	realtime.analysis(db_path, model_name, detector_backend, distance_metric, enable_face_analysis
+	emo_dict = realtime.analysis(db_path, model_name, detector_backend, distance_metric, enable_face_analysis
 						, source = source, time_threshold = time_threshold, frame_threshold = frame_threshold)
-
+	return emo_dict
 def detectFace(img_path, target_size = (224, 224), detector_backend = 'opencv', enforce_detection = True, align = True):
 
 	"""

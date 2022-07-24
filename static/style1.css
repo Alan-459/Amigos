@@ -40,11 +40,14 @@ button{
     background: #3498db;
         color: white;
         font-size: large;
-        border-radius: 10%;
-        border-color: rgb(233, 135, 135);
-        height: 2.4rem;
-        width: 7rem;
-        margin-left:15%;
+        border-radius: 50%;
+        height: 4rem;
+        width: 4rem;
+        /* margin-left:15%; */
+        border: 0px;
+        padding: 3px 2px;
+        /* position: relative;
+        left: 250%; */
 }
 button:hover{
     background-color: rgb(233, 135, 135);
@@ -54,3 +57,15 @@ button:hover{
         font-weight: 2rem;
         cursor: pointer;
 }
+div.go{
+    justify-content:space-between;
+}
+button.icon-left{
+    position: relative;
+    right:250%;
+}
+button.icon-right{
+    position: relative;
+    left:250%;
+}
+
