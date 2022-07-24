@@ -5,6 +5,10 @@ from deepface import DeepFace as df
 import io
 import matplotlib.pyplot as plt
 import cv2 as cv
+import datetime
+import  matplotlib.pyplot as plt
+import base64
+import seaborn as sns
 recognizer=speech_recognition.Recognizer()
 
 config = {
@@ -76,10 +80,14 @@ camera=cv.VideoCapture(0)
 def datef():
     
     if request.method == 'POST':
-        date1 = request.form['date']
-        date['date'] = date1
+        try:
+            date1 = request.form['date']
+            date['date'] = date1
+        except:
+            date['date'] = str(datetime.date.today())
         db.child(date['date']).update(date)
         return render_template('new2.html')
+    
     return render_template('new1.html')
 
 def generate_frames():
@@ -196,8 +204,12 @@ def egraph():
     y=[]
     todo = db.get()
     to = todo.val()
+    print(to)
     ar=to.values()
+    print("")
+    print(ar)
     for i in ar:
+        print(i)
         x.append(i['date'])
         y.append(i['face'])
     plt.plot(x,y)
