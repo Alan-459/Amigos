@@ -1,7 +1,7 @@
 from flask import *
 import pyrebase
 import speech_recognition
-from deepface import DeepFace as df
+import DeepFace as df
 import io
 import matplotlib.pyplot as plt
 import cv2 as cv
