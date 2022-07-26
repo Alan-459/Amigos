@@ -16,22 +16,23 @@
             <div class="block">
                 <div class="innerblock">
                     <h1>How was your day today ?</h1>
-                    <br> {{r}}
+                    <br>
                     <form action="/rate" method="POST">
 
                         <select class="sele" id="rate" name="rate" size="4" multiple>
-                            <option value="Boring"><span class="em">&#128530</span>   Boring</option>
-                            <option value="Awesome"> <span class="em">🤑 </span> Awesome</option>
-                            <option value="Normal"><span class="em">😎 </span>  Normal</option>
-                            <option value="Bad"> <span class="em">&#128543</span>   Bad</option>
-                         </select>
-                        <button class="submit" type="submit" name="submit" value="rate">Next</button>
+          <option value="Boring"><span class="em">&#128530</span>   Boring</option>
+          <option value="Awesome"> <span class="em">🤑 </span> Awesome</option>
+          <option value="Normal"><span class="em">😎 </span>  Normal</option>
+          <option value="Bad"> <span class="em">&#128543</span>   Bad</option>
+        </select>
+                        <button class="submit" type="submit" name="submit"><i class="fa-solid fa-arrow-right"></i></button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
     <br>
+    <button class="submit1"><a href="/date"><i class="fa-solid fa-arrow-left"></i></a></button>
     <!-- <img class="ved" src="{{ url_for('video') }}" width="20%"> -->
 
 
